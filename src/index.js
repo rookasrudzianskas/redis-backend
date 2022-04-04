@@ -18,6 +18,16 @@ const todoRepo = new Repository(todoSchema, client);
 await todoRepo.dropIndex();
 await todoRepo.createIndex();
 
+app.post('/appTodo', async (req, res) => {
+  const todoItem = todoRepo.createEntity();
+
+  todoItem.todo = req.body.todo;
+  todoItem.status = req.body.status;
+  todoItem.id = await todoRepo.save(todoItem);
+
+  res.send('OK');
+})
+
 
 
 app.listen(port, () => {
