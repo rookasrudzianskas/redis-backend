@@ -32,6 +32,10 @@ app.get('/getTodos', async (req, res) => {
   res.send(await todoRepo.search().returnAll());
 });
 
+app.delete('/deleteTodo/:id', async (req, res) => {
+  await todoRepo.remove(req.params.id);
+  res.send('OK');
+});
 
 
 app.listen(port, () => {
