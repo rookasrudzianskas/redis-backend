@@ -26,7 +26,11 @@ app.post('/appTodo', async (req, res) => {
   todoItem.id = await todoRepo.save(todoItem);
 
   res.send('OK');
-})
+});
+
+app.get('/getTodos', async (req, res) => {
+  res.send(await todoRepo.search().returnAll());
+});
 
 
 
