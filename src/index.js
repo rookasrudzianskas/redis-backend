@@ -37,6 +37,14 @@ app.delete('/deleteTodo/:id', async (req, res) => {
   res.send('OK');
 });
 
+app.put('/updateTodo/:id', async (req, res) => {
+  const todoItem = await todoRepo.fetch(req.params.id);
+  todoItem.todo = req.body.todo;
+  todoItem.status = req.body.status;
+  await todoRepo.save(todoItem);
+  res.send('OK');
+});
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
