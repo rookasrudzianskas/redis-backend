@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import {Client, Repository} from 'redis-om';
+import {todoSchema} from '../schema/todo.schema.js';
 
 const app = express();
 const port = process.env.PORT || 9000;
@@ -13,9 +14,11 @@ await client.open(
     'redis://admin:Rokas2020.@redis-18074.c98.us-east-1-4.ec2.cloud.redislabs.com:18074',
 )
 
-app.get('/', (req, res, next) => {
-  res.send('Hello World!');
-});
+const todoRepo = new Repository(todoSchema, client);
+await todoRepo.dropIndex();
+await todoRepo.createIndex();
+
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
