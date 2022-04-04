@@ -1,0 +1,16 @@
+{
+  "name": "redis-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "redis": "^4.0.6",
+    "redis-om": "^0.2.1"
+  },
+"type":  "module",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  }
+}
